@@ -1,0 +1,90 @@
+#include<stdio.h>
+#include<conio.h>
+#include<graphics.h>
+#include<dos.h>
+int main()
+{
+int gd=DETECT,gm,x,y,p,q,i,j;
+char a[2],b=3,aa[10][2]={"H\0","A\0","P\0","P\0","Y\0"},ab[10][3]={"B\0","I\0","R\0","T\0","H\0","D\0","A\0","Y\0"},ac[10][3]={"A\0","N\0","K\0","I\0","T\0","H\0","A\0"};
+initgraph(&gd,&gm,"C:\\TURBOC3\\BGI");
+a[0]=b;
+a[1]='\0';
+x=getmaxx()/2;
+y=getmaxy()/2;
+p=x-208;
+q=y-158;
+rectangle(x-208,y-150,x+208,y+103);
+  //rectangle(x-200,y-150,x+208,y+100);
+for(i=1;i<=4;i++)
+{
+while(1)
+{
+delay(10);
+outtextxy(p,q,a);
+p=p+8;
+if(p>=x+200+(8*i))
+break;
+}
+p=p+2;
+q=y-(150+8*i);
+while(1)
+{
+delay(10);
+outtextxy(p,q,a);
+q=q+8;
+if(q>=y+100+(8*i))
+break;
+}
+q=q-8;
+while(1)
+{
+delay(10);
+outtextxy(p,q,a);
+p=p-8;                   // rectangle(x-200,y-150,x+208,y+100);
+if(p<=x-(208+8*i))
+break;
+}
+p=p+6;
+while(1)
+{
+delay(10);
+outtextxy(p,q,a);
+q=q-8;
+if(q<=y-(166+8*i)||(q<y-182))
+break;
+}
+p=p+8;
+q=q+8;
+}
+settextstyle(10,0,3);
+for(i=0;i<5;i++)
+{
+outtextxy(x-150+22*i,y-100,aa[i]);
+delay(500);
+}
+for(i=0;i<8;i++)
+{	// rectangle(x-200,y-150,x+208,y+100);
+outtextxy(x+20*i,y-100,ab[i]);
+delay(500);
+}
+settextstyle(10,0,5);
+for(i=0;i<7;i++)
+{
+outtextxy(x-130+40*i,y-25,ac[i]);
+delay(500);
+}
+delay(1000);
+setcolor(WHITE);
+for(i=0;i<=14;i++)
+{
+setfillstyle(1,i);
+rectangle(x-208,y-150,x+208,y+103);
+floodfill(x,y,WHITE);
+delay(500);
+}
+settextstyle(5,0,4);
+outtextxy(x-230,getmaxy()-100,"When colours express feelings :-)");
+getch();
+closegraph();
+return 0;
+}
